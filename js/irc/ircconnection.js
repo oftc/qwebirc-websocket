@@ -67,7 +67,9 @@ qwebirc.irc.IRCConnection = new Class({
       self.fireEvent('error', 'fail')
     }
 
-    var remoteHost = "webirc.oftc.net:" + getParameterByName('ircport') || '8443';
+    var remoteHost = "webirc.oftc.net:";
+    var port = getParameterByName('ircport');
+    remoteHost += port || '8443';
     self.websocket = io.connect('https://' + remoteHost);
     self.websocket.on('connect', connected);
     self.websocket.on('message', onmessage);
