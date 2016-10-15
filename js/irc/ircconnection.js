@@ -37,6 +37,7 @@ qwebirc.irc.IRCConnection = new Class({
     var self = this;
 
     function connected () {
+      qwebirc.connected = true;
       //console.log('connected');
       if(console && console.log)
         console.log(self.websocket);
@@ -78,6 +79,7 @@ qwebirc.irc.IRCConnection = new Class({
   },
 
   disconnect: function(error) {
+    qwebirc.connected = false;
     this.disconnected = true;
     if(this.websocket) {
       this.websocket.disconnect()
